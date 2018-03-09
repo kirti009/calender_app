@@ -1,0 +1,26 @@
+<%= render :partial=> 'layouts/header' %>
+<h1>Events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><!-- Title --></th>
+      <th><!-- Description --></th>
+      <th><!-- Start time --></th>
+      <th><!-- End time --></th>
+      <th colspan="3"></th>
+    </tr>
+    <div id="calendar" class= "calander_size"></div> <h1></h1>
+  </thead>
+</table>
+
+<br>
+<%= link_to 'New Event', new_event_path %>
+
+<script>
+  $( function() {
+    $( "#calendar").fullCalendar({
+      events: '/events.json'
+    });
+  });
+</script>

@@ -12,4 +12,15 @@
  *
  *= require_tree .
  *= require_self
+ *= require fullcalendar
  */
+
+.calander_size
+{
+  height: 200px;
+  width: 500px;
+  margin-left: 244px;
+}
+.font-color{
+	color: #9d9d9d;
+}

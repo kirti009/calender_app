@@ -1,5 +1,20 @@
 Rails.application.routes.draw do
-  resources :users
+  
+  get 'sessions/create'
+  get 'sessions/destroy'
+  get 'homes/show'
+  get 'homes/index'
+
+  resources :users, :events
+
+  get 'login', to: redirect('/auth/google_oauth2'), as: 'login'
+  get 'fb_login', to: redirect('/auth/facebook'), as: 'fb_login'
+  get 'logout', to: 'sessions#destroy', as: 'logout'
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
+  get 'homes', to: 'homes#show'
+  get 'me', to: 'me#show', as: 'me'
+  root to: "homes#show"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -25,33 +40,5 @@ Rails.application.routes.draw do
   #     collection do
   #       get 'sold'
   #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
   #   end
 end

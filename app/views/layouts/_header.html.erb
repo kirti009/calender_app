@@ -1,0 +1,21 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+      <div>
+      <% if current_user %>
+        <div class=" navbar-right font-color">
+         Signed in as <strong><%= current_user.name %></strong>!
+         <%= link_to "Sign out", logout_path, id: "sign_out" %>
+        </div>
+      <% else %>
+          <%= link_to image_tag("google.png"), login_path%>
+          <%= link_to image_tag("facebook.png"), fb_login_path %> 
+      <%end%>
+    </div>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Home",   homes_index_path %></li>
+        <li><%= link_to "Events", events_path %></li>
+      </ul>
+    </nav>
+    </div>
+    </header>
